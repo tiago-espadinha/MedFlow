@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 26 26">
+  <!-- MedFlow mark: one ECG complex on a square of chart paper -->
+  <rect width="26" height="26" rx="4" fill="#fffafa"/>
+  <path d="M0 5.2H26M0 10.4H26M0 15.6H26M0 20.8H26M5.2 0V26M10.4 0V26M15.6 0V26M20.8 0V26" stroke="#e5aeae" stroke-width="0.6"/>
+  <path d="M2 15H7.5L9 12.5L10.5 15H11.8L13.3 5L15 21L16.4 15H19L20.4 12L22 15H24" fill="none" stroke="#1f3a93" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>
