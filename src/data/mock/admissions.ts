@@ -1,0 +1,68 @@
+import type { Admission } from "../../types/resources";
+export const admissions: Admission[] = (
+  [
+    [
+      "J. Ellis",
+      "B-12",
+      "2023-09-24T07:40",
+      "Dr. Okafor",
+      "Active",
+      "1981-04-12",
+      "Male",
+    ],
+    [
+      "M. Rossi",
+      "ICU-3",
+      "2023-09-24T08:15",
+      "Dr. Patel",
+      "Critical",
+      "1966-11-02",
+      "Female",
+    ],
+    [
+      "T. Nakamura",
+      "C-07",
+      "2023-09-24T09:02",
+      "Dr. Silva",
+      "Observation",
+      "2015-06-20",
+      "Male",
+    ],
+    [
+      "A. Diallo",
+      "ER-2",
+      "2023-09-24T09:31",
+      "Dr. Haddad",
+      "Waiting",
+      "1990-02-28",
+      "Female",
+    ],
+    [
+      "P. Hughes",
+      "B-04",
+      "2023-09-23T21:10",
+      "Dr. Okafor",
+      "Pending",
+      "1974-09-09",
+      "Male",
+    ],
+    [
+      "K. Berg",
+      "D-11",
+      "2023-09-22T14:20",
+      "Dr. Nguyen",
+      "Discharged",
+      "1988-01-15",
+      "Female",
+    ],
+  ] as const
+).map((r, i) => ({
+  id: `ADM-${5521 + i}`,
+  patient: r[0],
+  bed: r[1],
+  admitted: r[2],
+  attending: r[3],
+  status: r[4],
+  dob: r[5],
+  sex: r[6],
+}));
