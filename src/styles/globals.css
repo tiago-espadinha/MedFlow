@@ -1,0 +1,417 @@
+/* Design tokens + shared primitives used across unrelated features.
+   Anything owned by a single component lives in a .css file next to that component. */
+:root {
+  color-scheme: light;
+  --bg: #f6f7fb;
+  --pan: #ffffff;
+  --line: #dde1ec;
+  --tx: #252d3a;
+  --mut: #66708a;
+  --pri: #4267a9;
+  --pd: #304c7d;
+  --pri2: #e6ecf7;
+  --sec: #6578c5;
+  --acc: #8a72b8;
+  --accb: #efeaf7;
+  --accd: #6b54a0;
+  --ok: #41916c;
+  --okb: #e3f2ea;
+  --okt: #2f7554;
+  --warn: #d39a3a;
+  --warnb: #faf0dc;
+  --warnt: #94661a;
+  --crit: #d05b65;
+  --critb: #fae8ea;
+  --critt: #b0424d;
+  --neu: #4e61ad;
+  --neub: #e9ecf8;
+  --sh: 0 1px 2px rgba(37, 45, 58, 0.06), 0 4px 14px rgba(37, 45, 58, 0.04);
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #12151c;
+  --pan: #1b202b;
+  --line: #2e3546;
+  --tx: #e6e9f0;
+  --mut: #9aa3b5;
+  --pri: #7c9bd9;
+  --pd: #a9beea;
+  --pri2: #1e2a44;
+  --sec: #8f9fe0;
+  --acc: #a995d2;
+  --accb: #2a2540;
+  --accd: #bba9e0;
+  --ok: #5cb88f;
+  --okb: #16342a;
+  --okt: #6ccba0;
+  --warn: #e0ae55;
+  --warnb: #3a2e14;
+  --warnt: #e6b55f;
+  --crit: #e87f88;
+  --critb: #40202a;
+  --critt: #f09099;
+  --neu: #a4b2ec;
+  --neub: #232a4a;
+  --sh: none;
+}
+
+/* base */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--tx);
+  font:
+    14px/1.45 system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+}
+h1 {
+  font-size: 20px;
+  margin: 0;
+  color: var(--pd);
+}
+h2 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--mut);
+  margin: 0 0 10px;
+}
+a {
+  color: var(--pri);
+}
+svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+:focus-visible {
+  outline: 2px solid var(--pri);
+  outline-offset: 2px;
+}
+.sub {
+  color: var(--mut);
+  font-size: 12px;
+}
+.hd {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+/* buttons */
+button {
+  font: inherit;
+  cursor: pointer;
+}
+a.g,
+button.b,
+button.g,
+button.x,
+.mini {
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.1s ease;
+}
+button.b {
+  background: var(--pri);
+  color: #fff;
+  border: 0;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+button.b:hover {
+  background: var(--pd);
+}
+button.g {
+  background: var(--pan);
+  color: var(--sec);
+  border: 1px solid var(--line);
+  padding: 7px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+a.g {
+  align-content: center;
+  text-align: center;
+  border-radius: 8px;
+  padding: 7px 12px;
+  background: var(--pri2);
+  color: var(--pri);
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-block;
+}
+a.g:hover {
+  background: var(--acc);
+  color: #fff;
+}
+button.g:hover {
+  border-color: var(--sec);
+}
+button.b:active,
+button.g:active {
+  transform: translateY(1px);
+}
+button.x {
+  background: none;
+  border: 0;
+  color: var(--critt);
+  padding: 7px 12px;
+  border-radius: 8px;
+}
+button.x:hover {
+  background-color: var(--critb);
+}
+.mini {
+  background: var(--pri2);
+  color: var(--pri);
+  border: 0;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  margin-right: 6px;
+  text-decoration: none;
+  display: inline-block;
+}
+.mini:hover {
+  background: var(--acc);
+  color: #fff;
+}
+
+/* layout primitives */
+.app-icon {
+  width: 26px;
+  height: 26px;
+}
+
+.grid {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.kp {
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+.two {
+  grid-template-columns: 3fr 2fr;
+}
+.card,
+.pan {
+  background: var(--pan);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--sh);
+  padding: 14px;
+}
+.bars,
+.lines {
+  display: flex;
+  flex-direction: column;
+}
+.bars svg,
+.lines svg {
+  margin: auto;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+}
+.card-body {
+  margin-top: auto;
+}
+.k {
+  font-size: 26px;
+  font-weight: 650;
+  margin: 2px 0;
+}
+.tools {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.tools select {
+  width: auto;
+}
+.li {
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+.li:last-child {
+  border: 0;
+}
+.av {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--pri2);
+  color: var(--pri);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  flex: none;
+}
+.av.small {
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
+}
+
+/* progress bar: the inner element is a plain <div>; .w / .c tint it for warning / critical */
+.bar {
+  height: 8px;
+  background: var(--line);
+  border-radius: 9px;
+  overflow: hidden;
+  margin: 5px 0 12px;
+}
+.bar > * {
+  display: block;
+  height: 100%;
+  background: var(--pri);
+}
+.bar > .w {
+  background: var(--acc);
+}
+.bar > .c {
+  background: var(--crit);
+}
+
+/* tables */
+.sc {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th {
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--mut);
+  padding: 8px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+td {
+  padding: 9px 8px;
+  border-bottom: 1px solid var(--line);
+}
+td a {
+  margin-right: 8px;
+}
+tr:last-child td {
+  border: 0;
+}
+tbody tr {
+  transition: background 0.12s ease;
+}
+tbody tr:hover {
+  background: var(--bg);
+}
+.link-cell {
+  cursor: pointer;
+}
+
+/* form controls */
+input,
+select {
+  font: inherit;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--tx);
+  width: 100%;
+}
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 11px;
+  padding-right: 30px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'><path d='M1 1 L5 5 L9 1' stroke='%2366708A' stroke-width='1.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+}
+select:hover {
+  border-color: var(--sec);
+}
+:root[data-theme="dark"] select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'><path d='M1 1 L5 5 L9 1' stroke='%239AA3B5' stroke-width='1.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+}
+.lang-select {
+  width: auto;
+  padding: 6px 26px 6px 10px;
+  font-size: 12px;
+}
+
+input[type="date"],
+input[type="time"],
+input[type="month"],
+input[type="datetime-local"] {
+  cursor: pointer;
+}
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator,
+input[type="month"]::-webkit-calendar-picker-indicator,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  filter: var(--picker-filter, none);
+  cursor: pointer;
+  opacity: 0.75;
+}
+input[type="date"]::-webkit-calendar-picker-indicator:hover,
+input[type="time"]::-webkit-calendar-picker-indicator:hover,
+input[type="month"]::-webkit-calendar-picker-indicator:hover,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+:root[data-theme="dark"] input[type="date"],
+:root[data-theme="dark"] input[type="time"],
+:root[data-theme="dark"] input[type="month"],
+:root[data-theme="dark"] input[type="datetime-local"] {
+  --picker-filter: invert(1) brightness(1.6);
+}
+
+@media (max-width: 860px) {
+  .two {
+    grid-template-columns: 1fr;
+  }
+}
+/* Light/dark switch: while html.theme-transition is present (added for ~450ms by AppProvider),
+   every element eases its colours. transform is deliberately left out so framer-motion's
+   own animations (e.g. the theme icon rotating) are not smoothed a second time by CSS. */
+@media (prefers-reduced-motion: no-preference) {
+  html.theme-transition *,
+  html.theme-transition *::before,
+  html.theme-transition *::after {
+    transition-property:
+      background-color, color, border-color, fill, stroke, box-shadow,
+      outline-color, opacity, left !important;
+    transition-duration: 0.35s !important;
+    transition-timing-function: ease !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
