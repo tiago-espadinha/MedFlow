@@ -1,0 +1,275 @@
+.app {
+  display: grid;
+  grid-template-columns: 216px 1fr;
+  min-height: 100vh;
+}
+aside {
+  background: var(--pan);
+  border-right: 1.5px solid var(--tx);
+  padding: 20px 16px 14px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  padding: 24px 28px 40px;
+  min-width: 0;
+  max-width: 1560px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.side-hospital {
+  font-size: 14px;
+  color: var(--mut);
+  margin-bottom: 18px;
+}
+aside .brand {
+  font: 800 28px/1 var(--num);
+  letter-spacing: -0.01em;
+  padding: 4px 8px 14px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+aside .brand-row .brand {
+  padding: 0;
+}
+aside .brand i {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: var(--pri);
+  color: var(--on-color);
+  display: grid;
+  place-items: center;
+  font-style: normal;
+}
+
+aside a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--tx);
+  font-weight: 500;
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+aside a:hover {
+  background: var(--pri2);
+}
+aside a.active {
+  font-weight: 800;
+}
+aside a.active::before {
+  content: "";
+  position: absolute;
+  left: -16px;
+  top: 8px;
+  bottom: 8px;
+  width: 4px;
+  background: var(--tx);
+}
+aside b.n {
+  min-width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  padding: 0 5px;
+  border-radius: 3px;
+  font: 800 14px/1 var(--num);
+}
+aside b.n.c {
+  background: var(--crit);
+  color: var(--pan);
+}
+aside b.n.l {
+  color: var(--low);
+  box-shadow: inset 0 0 0 2px var(--low);
+}
+
+.side-user {
+  margin-top: auto;
+  padding: 12px 10px 4px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px;
+  align-items: center;
+}
+.side-user .x {
+  grid-column: 1/-1;
+  margin-top: 8px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--tx);
+  border: 1.5px solid var(--line);
+}
+
+#toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--tx);
+  color: var(--bg);
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+#toast.s {
+  opacity: 1;
+}
+
+/* mobile-only pieces are hidden on desktop */
+.topbar,
+.scrim {
+  display: none;
+}
+.icon-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--pan);
+  color: var(--mut);
+  display: grid;
+  place-items: center;
+  padding: 0;
+  flex: none;
+}
+.icon-btn:hover {
+  color: var(--pri);
+  border-color: var(--pri);
+}
+
+/* Mobile: the sidebar becomes an off-canvas drawer opened from a slim top bar. */
+@media (max-width: 860px) {
+  .app {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .topbar {
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    height: 52px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    background: var(--pan);
+    border-bottom: 1.5px solid var(--tx);
+  }
+  .topbar-left,
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .topbar-left {
+    height: 100%;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+  .topbar .brand {
+    padding: 0;
+    font: 800 22px/1 var(--num);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    line-height: 1;
+  }
+  .topbar .brand span {
+    transform: translateY(2px);
+  }
+  .topbar .brand::after {
+    content: "⌄";
+    display: inline-block;
+    transition: transform 0.2s ease;
+    transform-origin: center;
+  }
+  .topbar-left.open .brand::after {
+    transform: rotate(180deg) translateY(-4px);
+  }
+  .scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 25;
+    background: var(--scrim-drawer);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  .scrim.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  aside {
+    position: fixed;
+    top: auto;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: fit-content;
+    z-index: 30;
+    padding: 14px 10px;
+    border-right: 1px solid var(--line);
+    border-bottom: 0;
+    transform: translateY(102%);
+    transition: transform 0.25s ease;
+    box-shadow: none;
+    border-radius: 6px 6px 0 0;
+    border-top: 1.5px solid var(--tx);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  aside a {
+    justify-content: center;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    gap: 12px;
+    height: 4rem;
+  }
+  aside a.active::before,
+  .side-hospital {
+    display: none;
+  }
+  aside .brand-row,
+  aside a:last-of-type {
+    display: none;
+  }
+  aside.open {
+    transform: none;
+    box-shadow: 0 0 32px var(--shadow-drawer);
+  }
+  .side-user {
+    display: none;
+  }
+  main {
+    padding: 16px 16px 32px;
+  }
+}
