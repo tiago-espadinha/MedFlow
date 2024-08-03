@@ -1,0 +1,67 @@
+.acct {
+  position: relative;
+}
+.acct-btn {
+  border: 0;
+  background: none;
+  padding: 0;
+  border-radius: 50%;
+  line-height: 0;
+}
+.acct-btn .av {
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
+  border: 1px solid var(--line);
+}
+.acct-btn:hover .av {
+  border-color: var(--pri);
+}
+.acct-pop {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  width: 224px;
+  background: var(--pan);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(20, 26, 36, 0.18);
+  padding: 6px;
+  z-index: 40;
+}
+.acct-head {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 8px;
+}
+.acct-head b {
+  display: block;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.acct-sep {
+  height: 1px;
+  background: var(--line);
+  margin: 4px 0;
+}
+.acct-item {
+  display: flex;
+  width: 100%;
+  text-align: left;
+  padding: 9px 10px;
+  border-radius: 8px;
+  border: 0;
+  background: none;
+  color: var(--tx);
+  text-decoration: none;
+  font-size: 13px;
+}
+.acct-item:hover {
+  background: var(--bg);
+}
+.acct-item.danger {
+  color: var(--critt);
+}
