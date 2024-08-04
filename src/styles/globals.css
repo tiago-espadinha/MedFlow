@@ -6,6 +6,7 @@
    graticule). Vital signs keep a monitor colour (--p-*) everywhere they appear. */
 :root {
   --on-color: #ffffff;
+  --on-warn: #241600;
   --scrim-drawer: rgba(20, 26, 36, 0.45);
   --shadow-drawer: rgba(20, 26, 36, 0.25);
   --shadow-menu: rgba(8, 12, 24, 0.18);

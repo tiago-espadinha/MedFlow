@@ -1,0 +1,76 @@
+/* Status tags: text in the status colour with a square key, like a chart legend. */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.pill:not(.flag)::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 1px;
+  background: currentColor;
+  flex: none;
+}
+.ok {
+  color: var(--okt);
+}
+.warn {
+  color: var(--warnt);
+}
+.crit {
+  color: var(--critt);
+}
+.neu {
+  color: var(--mut);
+}
+.pend {
+  color: var(--sec);
+}
+.pend::before {
+  background: transparent !important;
+  box-shadow: inset 0 0 0 2px currentColor;
+}
+
+/* Lab-report flags: a letter chip beside the word. */
+.flag i {
+  font: normal 800 14px/1 var(--num);
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 3px;
+  flex: none;
+}
+.flag.c {
+  color: var(--critt);
+}
+.flag.c i {
+  background: var(--crit);
+  color: var(--pan);
+}
+.flag.h {
+  color: var(--warnt);
+}
+.flag.h i {
+  background: var(--warn);
+  color: var(--on-warn);
+}
+.flag.l {
+  color: var(--low);
+}
+.flag.l i {
+  color: var(--low);
+  box-shadow: inset 0 0 0 2px var(--low);
+}
+.flag.n {
+  color: var(--mut);
+  font-weight: 500;
+}
+.flag.n i {
+  color: var(--mut);
+  box-shadow: inset 0 0 0 1px var(--mut);
+}
