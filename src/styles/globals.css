@@ -3,6 +3,7 @@
 :root {
   --on-color: #ffffff;
   --scrim-drawer: rgba(20, 26, 36, 0.45);
+  --scrim-modal: rgba(20, 26, 36, 0.5);
   --shadow-drawer: rgba(20, 26, 36, 0.25);
   --shadow-menu: rgba(20, 26, 36, 0.18);
   color-scheme: light;
