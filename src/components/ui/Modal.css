@@ -1,0 +1,50 @@
+/* Modal chrome, plus the form conventions (.fg / .err / .acts) shared by everything rendered inside one. */
+.ov {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 26, 36, 0.5);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  z-index: 10;
+}
+.md {
+  background: var(--pan);
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  max-width: 580px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.md.wide {
+  max-width: 760px;
+}
+.fg {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 14px 0 6px;
+}
+.fg label {
+  font-size: 12px;
+  font-weight: 600;
+  display: grid;
+  gap: 4px;
+}
+.err {
+  color: var(--critt);
+  font-size: 12px;
+  min-height: 18px;
+  margin-top: 6px;
+}
+.acts {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+@media (max-width: 860px) {
+  .fg {
+    grid-template-columns: 1fr;
+  }
+}
