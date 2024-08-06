@@ -1,0 +1,38 @@
+.num-field {
+  position: relative;
+}
+.num-field input {
+  padding-right: 30px;
+  font-variant-numeric: tabular-nums;
+}
+.num-btns {
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  bottom: 1px;
+  width: 24px;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--line);
+}
+.num-btns button {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  border: 0;
+  color: var(--mut);
+  padding: 0;
+  line-height: 1;
+}
+.num-btns button:first-child {
+  border-radius: 0 7px 0 0;
+  border-bottom: 1px solid var(--line);
+}
+.num-btns button:last-child {
+  border-radius: 0 0 7px 0;
+}
+.num-btns button:hover {
+  background: var(--pri2);
+  color: var(--pri);
+}
