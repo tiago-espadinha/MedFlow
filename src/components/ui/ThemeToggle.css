@@ -1,0 +1,16 @@
+.theme-toggle {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--pan);
+  color: var(--mut);
+  display: grid;
+  place-items: center;
+  flex: none;
+  padding: 0;
+}
+.theme-toggle:hover {
+  color: var(--pri);
+  border-color: var(--pri);
+}
