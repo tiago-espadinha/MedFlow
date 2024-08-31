@@ -1,0 +1,101 @@
+/* Patient label block: name and actions, then the identifying fields under a rule. */
+.pt-hd .fields {
+  flex-basis: calc(100% + 36px);
+  margin: 2px -18px -12px;
+  padding: 10px 0 12px;
+  border-top: 1px solid var(--line);
+}
+
+/* Vital readouts: each carries its monitor colour as a top bar and label. */
+.vitals > .card {
+  position: relative;
+}
+.vitals > .card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 4px;
+  background: var(--pc);
+}
+.vitals > .card h2 {
+  color: var(--pc);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+.vitals .k {
+  font-size: 44px;
+}
+
+/* metric tabs above the trend chart */
+.tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.tabs button {
+  padding: 4px 10px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 3px;
+  border: 1px solid var(--line);
+  background: var(--pan);
+  color: var(--tx);
+}
+.tabs button:hover {
+  border-color: var(--tx);
+}
+.tabs button.on {
+  background: var(--tx);
+  color: var(--pan);
+  border-color: var(--tx);
+}
+
+.legend {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 10px 16px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--mut);
+}
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.legend svg {
+  width: 26px;
+  flex: none;
+}
+.empty-chart {
+  padding: 18px 16px;
+}
+
+.btns {
+  display: flex;
+  gap: 8px;
+}
+.btns .sub {
+  font-size: 15px;
+  color: var(--tx);
+  background: var(--pan);
+  border: 1.5px solid var(--tx);
+  padding: 7px 14px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.btns .sub:hover {
+  background-color: var(--pri2);
+}
+.btns .sub::before {
+  content: "‹";
+  font-size: 18px;
+  font-weight: 800;
+  margin-right: 6px;
+}
