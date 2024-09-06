@@ -2,6 +2,9 @@
    Anything owned by a single component lives in a .css file next to that component. */
 :root {
   --on-color: #ffffff;
+  --print-head: #F6F7FB;
+  --print-ink: #20313D;
+  --print-rule: #D9E1E7;
   --scrim-drawer: rgba(20, 26, 36, 0.45);
   --scrim-modal: rgba(20, 26, 36, 0.5);
   --shadow-drawer: rgba(20, 26, 36, 0.25);
