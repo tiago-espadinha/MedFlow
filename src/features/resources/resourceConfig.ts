@@ -26,7 +26,7 @@ const st = (options: string[]): Field => ({
   options,
 });
 const n = (r: any[], ...s: string[]) =>
-  r.filter((x) => s.includes(x.status)).length;
+  r.filter((x) => s.includes(String(x.status))).length;
 
 export const RES: Record<Key, Res> = {
   doctors: {
