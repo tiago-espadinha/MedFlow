@@ -99,3 +99,9 @@
   font-weight: 800;
   margin-right: 6px;
 }
+
+@media (max-width: 640px) {
+  .pt-hd .fields > div {
+    padding: 0 12px;
+  }
+}
