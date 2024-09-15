@@ -151,7 +151,7 @@ export default function Reports() {
             </div>
             <div
               className="sc"
-              style={{ maxHeight: "48vh", overflowY: "auto" }}
+              style={{ maxHeight: "48vh", overflowY: "auto", overscrollBehavior: "contain" }}
             >
               <table>
                 <thead>
