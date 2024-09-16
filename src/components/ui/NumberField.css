@@ -2,6 +2,7 @@
   position: relative;
 }
 .num-field input {
+  appearance: textfield;
   padding-right: 30px;
   font-variant-numeric: tabular-nums;
 }
