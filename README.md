@@ -1,50 +1,151 @@
-# MedFlow
+# MedFlow — Healthcare Operations Dashboard
 
-React + TypeScript + Vite hospital operations demo, with a mock dataset persisted to localStorage.
+A healthcare operations dashboard UI for managing patients, admissions, doctors, laboratory orders, billing, pharmacy, and appointments. The application includes role-based access, patient charts, reporting, localization, and responsive UI interactions.
 
-    npm install
-    npm run dev
-    npm run lint     # check
-    npm run format   # auto-fix (ESLint doubles as the formatter — no Prettier)
+Built with React, TypeScript, and Vite.
 
-## Structure
+## Live Demo
 
-    src/
-    ├── app/            # App shell: provider composition + route table
-    ├── components/
-    │   ├── ui/         # Modal, Pill, NumberField, ListItem, ThemeToggle
-    │   ├── charts/     # Bars, LineChart (plain SVG, no chart library)
-    │   ├── dashboard/  # Kpis, AnimatedNumber
-    │   └── layout/     # PageFade, Layout (sidebar shell)
-    ├── features/
-    │   ├── auth/       # roles, permissions, AuthProvider, Login
-    │   ├── patients/   # per-admission patient chart + vitals form
-    │   ├── resources/  # generic CRUD: table/form/detail-modal + per-resource config
-    │   ├── overview/, reports/, settings/
-    ├── data/           # seed.ts assembles the mock DB from data/mock/*.ts fragments
-    ├── i18n/           # translation dictionary + provider
-    ├── state/          # AppProvider — the mock "backend" (add/update/remove, localStorage)
-    ├── types/          # database.ts (DB/Key/Row), resources.ts, patient.ts
-    ├── utils/          # currency, dates, validation — small pure helpers shared across features
-    └── styles/globals.css   # design tokens (light/dark) + primitives shared across features
+**[Try it online →](https://med-flow-amber.vercel.app)**
 
-## Styling
+## Running locally
 
-Styles are split by ownership: `styles/globals.css` holds the theme tokens and primitives used by many features
-(buttons, panels, grid, tables, form controls). Anything owned by a single component sits next to it
-(`Modal.css`, `Pill.css`, `Login.css`, …) and is imported by that component.
+```bash
+# install dependencies
+npm install
 
-`components/layout/Layout.tsx` (the sidebar shell) isn't in the originally requested tree but
-was added there since it's layout-level chrome, not tied to any one feature.
+# start the development server
+npm run dev
+```
 
-## What's in it
+Then open the local URL shown by Vite in your browser.
 
-- Role-based sign-in (no real password) at /login: Administrator, Doctor, Nurse, Receptionist, Pharmacist, Billing staff. Each role sees a different set of pages in the sidebar (see features/auth/roles.ts).
-- Doctors, Admissions, Laboratory, Billing, Pharmacy, Appointments: searchable/filterable tables, add, edit and delete, plus a detail view per row. Number fields use a custom stepper; date/time/month fields use native pickers.
-- Admissions rows for roles with clinical access (admin, doctor, nurse) link to a per-patient chart at /admissions/:id, with vitals, a trend chart, goals and that patient's appointments.
-- Overview and Reports are computed from the live mock data. Reports can be previewed, printed, or exported to CSV.
-- Settings: language, dark mode, notification toggles, and (admin only) the hospital name.
-- Localization: English, European Portuguese, Spanish, French — switchable on the login screen or in Settings.
-- Animations via framer-motion: page fades, staggered KPI cards with count-up numbers, animated bar/line charts, list add/remove, and modal transitions. A discreet theme toggle is visible on every screen (sidebar on desktop, top bar on mobile, login), and switching themes eases colours across the whole UI. On mobile the sidebar becomes a slide-in drawer opened from a slim top bar with an account menu.
+## Features
 
-Data lives in src/data/ and is kept in the browser's localStorage (src/state/AppProvider.tsx), so edits survive a reload. "Restore sample data" in Settings resets it.
+| Feature            | Description                                                                            |
+| ------------------ | -------------------------------------------------------------------------------------- |
+| Overview Dashboard | Hospital-wide KPIs, activity summaries, alerts, and operational metrics                |
+| Patient Management | Patient admissions, records, vitals, goals, and individual patient charts              |
+| Doctors            | Manage doctor records and related information                                          |
+| Laboratory         | Track laboratory orders and their status                                               |
+| Billing            | Manage invoices and billing records                                                    |
+| Pharmacy           | Manage medications and pharmacy records                                                |
+| Appointments       | View and manage scheduled appointments                                                 |
+| Role-Based Access  | Six user roles with permission-gated navigation and routes                             |
+| Reports            | Generate reports from application data with CSV export and print support               |
+| Localization       | Multi-language interface with translated navigation, forms, statuses, and patient data |
+| Responsive UI      | Layouts and controls designed to work across different screen sizes                    |
+| Animations         | Page transitions, modal animations, KPI counters, and list interactions                |
+| Settings           | Application preferences including language and appearance options                      |
+
+## Project structure
+
+```text
+src/
+├── app/
+│   ├── App.tsx
+│   └── ...
+│
+├── components/
+│   ├── charts/
+│   ├── dashboard/
+│   ├── layout/
+│   └── ui/
+│
+├── data/
+│   └── mock/
+│
+├── features/
+│   ├── auth/
+│   ├── overview/
+│   ├── patients/
+│   ├── reports/
+│   ├── resources/
+│   └── settings/
+│
+├── i18n/
+├── state/
+├── types/
+├── utils/
+└── styles/
+```
+
+### Feature organization
+
+The application is organized around feature areas rather than keeping all pages and components in a single directory.
+
+- `app/` — application entry point and routing
+- `components/` — reusable presentation components
+- `data/` — seed and mock application data
+- `features/auth/` — login, roles, permissions, and authentication
+- `features/overview/` — main operations dashboard
+- `features/patients/` — patient charts, vitals, and goals
+- `features/reports/` — reporting and data export
+- `features/resources/` — reusable CRUD interfaces for hospital resources
+- `features/settings/` — application settings
+- `i18n/` — localization context, translations, and languages
+- `state/` — shared application state
+- `types/` — domain and database TypeScript types
+- `utils/` — shared utility functions
+- `styles/` — global application styles
+
+## Resource management
+
+The generic resource interface is used across several areas of the application:
+
+| Resource     | Purpose                        |
+| ------------ | ------------------------------ |
+| Doctors      | Doctor records and information |
+| Admissions   | Patient admission records      |
+| Laboratory   | Laboratory orders              |
+| Billing      | Invoices and billing records   |
+| Pharmacy     | Medication records             |
+| Appointments | Appointment scheduling         |
+
+Resources support common operations such as searching, filtering, adding, editing, deleting, and viewing records.
+
+## Authentication & roles
+
+The application includes six predefined roles with different access levels. Navigation items and protected routes respond to the current user's permissions.
+
+## Patient charts
+
+Patient admissions can be opened into a dedicated chart view containing:
+
+- Patient information
+- Vital signs
+- Vital trends
+- Goals
+- Admission-related information
+- Clinical actions available according to the user's role
+
+The chart includes a custom SVG-based visualization rather than relying on an external charting library.
+
+## Localization
+
+The interface includes a localization system with translated UI strings across the major application areas.
+
+Translations are accessed through the application's i18n context so that displayed text can change without changing the underlying data values used by the application.
+
+## Reports & exports
+
+Reports use the application's current data and support:
+
+- Report generation
+- CSV export
+- Print-friendly output
+
+## Gallery
+
+|                                                            |                                             |                                                 |
+| ---------------------------------------------------------- | ------------------------------------------- | ----------------------------------------------- |
+| **Dashboard**                                              | **Themes**                                  | **Localization**                                |
+| ![Dashboard](./demo_images/overview.png)                   | ![Themes](./demo_images/overview_light.png) | ![Localization](./demo_images/localization.png) |
+| **Staff**                                                  | **Admissions**                              | **Laboratory**                                  |
+| ![Staff](./demo_images/doctors&staff.png)                  | ![Admissions](./demo_images/admissions.png) | ![Laboratory](./demo_images/laboratory.png)     |
+| **Billing**                                                | **Pharmacy**                                | **Appointments**                                |
+| ![Billing](./demo_images/billing.png)                      | ![Pharmacy](./demo_images/pharmacy.png)     | ![Appointments](./demo_images/appointments.png) |
+| **Patient Charts**                                         | **Reports**                                 | **Settings**                                    |
+| ![Patient Charts](./demo_images/admissions_individual.png) | ![Reports](./demo_images/reports.png)       | ![Settings](./demo_images/settings.png)         |
+|                                                            | **Authentication**                          |                                                 |
+|                                                            | ![Authentication](./demo_images/login.png)  |                                                 |
