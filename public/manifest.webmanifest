@@ -4,13 +4,13 @@
   "description": "Healthcare Database",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#4267a9",
-  "theme_color": "#4267a9",
+  "background_color": "#090b12",
+  "theme_color": "#090b12",
   "icons": [
     {
       "src": "medflow_icon.svg",
       "sizes": "any",
-      "type": "svg",
+      "type": "image/xml+svg",
       "purpose": "any"
     }
   ]
