@@ -1,50 +1,67 @@
 # MedFlow
 
-React + TypeScript + Vite hospital operations demo, with a mock dataset persisted to localStorage.
+A healthcare operations dashboard for managing patients, admissions, doctors, laboratory orders, billing, pharmacy and appointments, built as a browser-only React application.
 
-    npm install
-    npm run dev
-    npm run lint     # check
-    npm run format   # auto-fix (ESLint doubles as the formatter — no Prettier)
+**[Try it online →](https://med-flow-amber.vercel.app)**
 
-## Structure
+|                                                            |                                             |                                                 |
+| ---------------------------------------------------------- | ------------------------------------------- | ----------------------------------------------- |
+| **Dashboard**                                              | **Themes**                                  | **Localization**                                |
+| ![Dashboard](./docs/images/overview.png)                   | ![Themes](./docs/images/overview_light.png) | ![Localization](./docs/images/localization.png) |
+| **Staff**                                                  | **Admissions**                              | **Laboratory**                                  |
+| ![Staff](./docs/images/doctors.png)                        | ![Admissions](./docs/images/admissions.png) | ![Laboratory](./docs/images/laboratory.png)     |
+| **Billing**                                                | **Pharmacy**                                | **Appointments**                                |
+| ![Billing](./docs/images/billing.png)                      | ![Pharmacy](./docs/images/pharmacy.png)     | ![Appointments](./docs/images/appointments.png) |
+| **Patient Charts**                                         | **Reports**                                 | **Settings**                                    |
+| ![Patient Charts](./docs/images/admissions_individual.png) | ![Reports](./docs/images/reports.png)       | ![Settings](./docs/images/settings.png)         |
+|                                                            | **Authentication**                          |                                                 |
+|                                                            | ![Authentication](./docs/images/login.png)  |                                                 |
 
-    src/
-    ├── app/            # App shell: provider composition + route table
-    ├── components/
-    │   ├── ui/         # Modal, Pill, NumberField, ListItem, ThemeToggle
-    │   ├── charts/     # Bars, LineChart (plain SVG, no chart library)
-    │   ├── dashboard/  # Kpis, AnimatedNumber
-    │   └── layout/     # PageFade, Layout (sidebar shell)
-    ├── features/
-    │   ├── auth/       # roles, permissions, AuthProvider, Login
-    │   ├── patients/   # per-admission patient chart + vitals form
-    │   ├── resources/  # generic CRUD: table/form/detail-modal + per-resource config
-    │   ├── overview/, reports/, settings/
-    ├── data/           # seed.ts assembles the mock DB from data/mock/*.ts fragments
-    ├── i18n/           # translation dictionary + provider
-    ├── state/          # AppProvider — the mock "backend" (add/update/remove, localStorage)
-    ├── types/          # database.ts (DB/Key/Row), resources.ts, patient.ts
-    ├── utils/          # currency, dates, validation — small pure helpers shared across features
-    └── styles/globals.css   # design tokens (light/dark) + primitives shared across features
+## Features
 
-## Styling
+- **Overview dashboard:** hospital-wide KPIs, admissions and ward occupancy charts, and a list of items needing attention.
+- **Resource management:** search, filter, add, edit, view and delete doctors, admissions, laboratory orders, invoices, medications and appointments.
+- **Patient charts:** patient details, vitals with trends and reading history, goals and appointments for each admission.
+- **Role-based access:** six roles, chosen at sign-in, each with its own navigation and permitted routes.
+- **Reports:** generated from the application's data, with CSV export and a print-friendly view.
+- **Localization:** English, Portuguese, Spanish and French across navigation, forms and statuses.
+- **Themes and settings:** dark and light themes, language, hospital name and notification preferences.
+- **Responsive layout:** a mobile navigation drawer and layouts that adapt across screen sizes.
+- **Animations:** page transitions, modal animations and KPI counters.
 
-Styles are split by ownership: `styles/globals.css` holds the theme tokens and primitives used by many features
-(buttons, panels, grid, tables, form controls). Anything owned by a single component sits next to it
-(`Modal.css`, `Pill.css`, `Login.css`, …) and is imported by that component.
+## Stack
 
-`components/layout/Layout.tsx` (the sidebar shell) isn't in the originally requested tree but
-was added there since it's layout-level chrome, not tied to any one feature.
+React 18 and TypeScript, built with Vite, with React Router for routing and Framer Motion for animation. There is no backend: data is seeded in the browser and kept in `localStorage`.
 
-## What's in it
+## Engineering highlights
 
-- Role-based sign-in (no real password) at /login: Administrator, Doctor, Nurse, Receptionist, Pharmacist, Billing staff. Each role sees a different set of pages in the sidebar (see features/auth/roles.ts).
-- Doctors, Admissions, Laboratory, Billing, Pharmacy, Appointments: searchable/filterable tables, add, edit and delete, plus a detail view per row. Number fields use a custom stepper; date/time/month fields use native pickers.
-- Admissions rows for roles with clinical access (admin, doctor, nurse) link to a per-patient chart at /admissions/:id, with vitals, a trend chart, goals and that patient's appointments.
-- Overview and Reports are computed from the live mock data. Reports can be previewed, printed, or exported to CSV.
-- Settings: language, dark mode, notification toggles, and (admin only) the hospital name.
-- Localization: English, European Portuguese, Spanish, French — switchable on the login screen or in Settings.
-- Animations via framer-motion: page fades, staggered KPI cards with count-up numbers, animated bar/line charts, list add/remove, and modal transitions. A discreet theme toggle is visible on every screen (sidebar on desktop, top bar on mobile, login), and switching themes eases colours across the whole UI. On mobile the sidebar becomes a slide-in drawer opened from a slim top bar with an account menu.
+- **Configuration-driven resources:** one resource page, table and form serve all six resources from a single configuration in `src/features/resources/resourceConfig.ts`.
+- **One permission source:** each role's permitted pages are listed in `src/features/auth/roles.ts`, and both the navigation and the route guards read from them.
+- **Translations that leave data alone:** dictionary lookups happen at display time, so stored status values stay the same in every language and filtering keeps working.
+- **Charts without a chart library:** the line and bar charts in `src/components/charts/` are hand-written SVG and CSS.
 
-Data lives in src/data/ and is kept in the browser's localStorage (src/state/AppProvider.tsx), so edits survive a reload. "Restore sample data" in Settings resets it.
+## Run it
+
+Requires Node.js 20.19+ or 22.12+.
+
+```bash
+npm install
+npm run dev
+```
+
+| Command                | What it does                                   |
+| ---------------------- | ---------------------------------------------- |
+| `npm run dev`          | Start the development server                   |
+| `npm run build`        | Typecheck and build for production into `dist` |
+| `npm run preview`      | Serve the production build locally             |
+| `npm run lint`         | Run ESLint (`npm run lint:fix` to fix)         |
+| `npm run format:check` | Check formatting (`npm run format` to fix)     |
+
+## Documentation
+
+- [Architecture](docs/ARCHITECTURE.md): how the application is structured, its data and state, and its trust boundaries.
+- [Deployment](docs/DEPLOYMENT.md): configuration, first deploy and release checks.
+
+## Licence and credits
+
+Released under the [MIT License](LICENSE). The interface uses each platform's system fonts, so no third-party fonts are loaded.

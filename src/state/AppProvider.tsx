@@ -43,7 +43,7 @@ function load<T>(k: string, d: T): T {
 }
 const defaults: Settings = {
   hospital: "St. Marin General Hospital",
-  dark: false,
+  dark: true,
   crit: true,
   low: true,
   daily: false,
