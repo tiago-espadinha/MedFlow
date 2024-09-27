@@ -24,7 +24,7 @@
   width: 224px;
   background: var(--pan);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 6px;
   box-shadow: 0 8px 24px var(--shadow-menu);
   padding: 6px;
   z-index: 40;

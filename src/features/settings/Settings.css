@@ -16,7 +16,7 @@
   width: 40px;
   height: 22px;
   border-radius: 99px;
-  background: var(--line);
+  background: var(--mut);
   border: 0;
   position: relative;
   flex: none;
@@ -29,7 +29,7 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: var(--on-color);
+  background: var(--pan);
   transition: 0.15s;
 }
 .tg.on {

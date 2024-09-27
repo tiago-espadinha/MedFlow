@@ -8,7 +8,8 @@
 .login-card {
   background: var(--pan);
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: 8px;
+  border-top: 6px solid var(--pri);
   box-shadow: var(--sh);
   padding: 28px;
   width: 100%;
@@ -22,8 +23,10 @@
   gap: 10px;
 }
 .login-head .brand {
-  font-weight: 700;
-  font-size: 16px;
+  font-weight: 850;
+  font-size: 22px;
+  font-variation-settings: "wdth" 125;
+  letter-spacing: -0.01em;
   display: flex;
   gap: 8px;
   align-items: center;
@@ -31,9 +34,9 @@
 .login-head .brand i {
   width: 26px;
   height: 26px;
-  border-radius: 7px;
+  border-radius: 5px;
   background: var(--pri);
-  color: var(--on-color);
+  color: var(--on-pri);
   display: grid;
   place-items: center;
   font-style: normal;
@@ -52,27 +55,31 @@
 .role-card {
   text-align: left;
   background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 4px;
+  padding: 12px 14px;
   display: grid;
   gap: 3px;
   cursor: pointer;
 }
 .role-card b {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--tx);
 }
 .role-card span {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--mut);
+}
+.role-card:hover {
+  border-color: var(--sec);
 }
 .role-card.on {
   background: var(--pri2);
   border-color: var(--pri);
+  box-shadow: inset 4px 0 0 var(--pri);
 }
 .role-card.on b {
-  color: var(--pd);
+  color: var(--tx);
 }
 @media (max-width: 860px) {
   .role-grid {

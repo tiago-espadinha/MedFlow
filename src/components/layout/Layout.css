@@ -4,9 +4,9 @@
   min-height: 100vh;
 }
 aside {
-  background: var(--pan);
-  border-right: 1px solid var(--line);
-  padding: 14px 10px;
+  background: var(--side);
+  color: var(--side-tx);
+  padding: 20px 12px 14px;
   position: sticky;
   top: 0;
   height: 100vh;
@@ -15,7 +15,7 @@ aside {
   flex-direction: column;
 }
 main {
-  padding: 20px;
+  padding: 28px 32px 40px;
   min-width: 0;
   max-width: 1560px;
   width: 100%;
@@ -27,11 +27,14 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 14px;
+  margin-bottom: 22px;
 }
 aside .brand {
-  font-weight: 700;
-  font-size: 16px;
+  color: var(--on-color);
+  font-weight: 850;
+  font-size: 20px;
+  font-variation-settings: "wdth" 118;
+  letter-spacing: -0.01em;
   padding: 4px 8px 14px;
   display: flex;
   gap: 8px;
@@ -55,9 +58,11 @@ aside a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: var(--mut);
+  color: var(--side-tx);
   padding: 9px 10px;
-  border-radius: 8px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-variation-settings: "wdth" 88;
   text-decoration: none;
   white-space: nowrap;
   transition:
@@ -65,35 +70,73 @@ aside a {
     color 0.15s ease;
 }
 aside a:hover {
-  background: var(--bg);
+  background: var(--side-line);
+  color: var(--on-color);
 }
 aside a.active {
-  background: var(--pri2);
-  color: var(--pri);
-  font-weight: 600;
+  background: var(--side-on);
+  color: var(--side-on-tx);
+  font-weight: 650;
 }
 aside b.n {
-  background: var(--critb);
-  color: var(--critt);
-  font-size: 11px;
-  padding: 0 7px;
-  border-radius: 99px;
+  min-width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 0 6px;
+  border-radius: 11px;
+  color: var(--on-color);
+  background: var(--t-red);
+}
+aside b.n.t-orange {
+  background: var(--t-orange);
+  color: var(--t-ink);
+}
+aside b.n.t-yellow {
+  background: var(--t-yellow);
+  color: var(--t-ink);
 }
 
 .side-user {
   margin-top: auto;
   padding: 12px 10px 4px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--side-line);
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 8px;
   align-items: center;
 }
+.side-user b {
+  color: var(--on-color);
+}
+.side-user .sub {
+  color: var(--side-tx);
+}
+.side-user .av {
+  background: var(--side-line);
+  color: var(--on-color);
+}
 .side-user .x {
   grid-column: 1/-1;
   margin-top: 8px;
   text-align: center;
-  background-color: var(--pri2);
+  color: var(--side-tx);
+  border: 1.5px solid var(--side-line);
+}
+.side-user .x:hover {
+  background: var(--side-line);
+  color: var(--on-color);
+}
+aside .theme-toggle {
+  background: transparent;
+  border-color: var(--side-line);
+  color: var(--side-tx);
+}
+aside .theme-toggle:hover {
+  color: var(--on-color);
+  border-color: var(--side-tx);
 }
 
 #toast {
@@ -104,7 +147,8 @@ aside b.n {
   background: var(--tx);
   color: var(--bg);
   padding: 10px 16px;
-  border-radius: 8px;
+  border-radius: 4px;
+  font-weight: 600;
   opacity: 0;
   transition: opacity 0.2s;
   pointer-events: none;
@@ -121,7 +165,7 @@ aside b.n {
 .icon-btn {
   width: 28px;
   height: 28px;
-  border-radius: 8px;
+  border-radius: 4px;
   border: 1px solid var(--line);
   background: var(--pan);
   color: var(--mut);
@@ -150,8 +194,17 @@ aside b.n {
     align-items: center;
     justify-content: space-between;
     padding: 0 12px;
-    background: var(--pan);
-    border-bottom: 1px solid var(--line);
+    background: var(--side);
+    color: var(--on-color);
+  }
+  .topbar .brand {
+    font-weight: 850;
+    font-variation-settings: "wdth" 125;
+  }
+  .topbar .theme-toggle {
+    background: transparent;
+    border-color: var(--side-line);
+    color: var(--side-tx);
   }
   .topbar-left,
   .topbar-right {
@@ -208,20 +261,20 @@ aside b.n {
     width: 100%;
     height: fit-content;
     z-index: 30;
-    padding: 14px 10px;
-    border-right: 1px solid var(--line);
+    padding: 14px 12px;
     border-bottom: 0;
     transform: translateY(102%);
     transition: transform 0.25s ease;
     box-shadow: none;
-    border-radius: 12px 12px 0 0;
+    border-radius: 8px 8px 0 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
   }
   aside a {
     justify-content: center;
-    background-color: var(--line);
+    background-color: var(--side-line);
+    color: var(--on-color);
     gap: 12px;
     height: 4rem;
   }
@@ -237,6 +290,6 @@ aside b.n {
     display: none;
   }
   main {
-    padding: 14px;
+    padding: 18px 16px 32px;
   }
 }

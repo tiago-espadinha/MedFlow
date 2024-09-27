@@ -34,12 +34,19 @@ export default function Layout() {
   }, [drawer]);
   if (!session) return null;
   const role = roleInfo(session.role);
-  const badge: Record<string, number> = {
-    laboratory: db.laboratory.filter((x) => x.status === "Critical").length,
-    pharmacy: db.pharmacy.filter((x) => x.stock <= x.reorderAt).length,
+  // Nav counts take the triage colour of the most urgent item behind them.
+  const badge: Record<string, [number, string]> = {
+    laboratory: [
+      db.laboratory.filter((x) => x.status === "Critical").length,
+      "t-red",
+    ],
+    pharmacy: [
+      db.pharmacy.filter((x) => x.stock <= x.reorderAt).length,
+      db.pharmacy.some((x) => x.stock === 0) ? "t-orange" : "t-yellow",
+    ],
   };
   const links: [string, string, string][] = [
-    ["/", "overview", t("Overview")],
+    ["/", "overview", t("Priority board")],
     ...KEYS.map(
       (k) => [`/${k}`, k, t(RES[k].title)] as [string, string, string],
     ),
@@ -84,7 +91,7 @@ export default function Layout() {
             return (
               <NavLink key={to} to={to} end={to === "/"}>
                 {label}
-                {b ? <b className="n">{b}</b> : null}
+                {b?.[0] ? <b className={`n ${b[1]}`}>{b[0]}</b> : null}
               </NavLink>
             );
           })}

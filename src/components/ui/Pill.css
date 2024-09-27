@@ -1,29 +1,35 @@
+/* Status tags read like wristbands: a square tag with a solid triage-colour edge. */
 .pill {
   display: inline-block;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 2px 9px;
-  border-radius: 99px;
+  font-size: 12.5px;
+  font-weight: 650;
+  font-variation-settings: "wdth" 90;
+  padding: 2px 8px 2px 10px;
+  border-radius: 3px;
   white-space: nowrap;
 }
 .ok {
   background: var(--okb);
   color: var(--okt);
+  box-shadow: inset 3px 0 0 var(--t-green);
 }
 .warn {
   background: var(--warnb);
   color: var(--warnt);
+  box-shadow: inset 3px 0 0 var(--t-yellow);
 }
 .crit {
   background: var(--critb);
   color: var(--critt);
-}
-.neu {
-  background: var(--neub);
-  color: var(--neu);
+  box-shadow: inset 3px 0 0 var(--t-red);
 }
 .pend {
-  background: var(--accb);
-  color: var(--accd);
-  box-shadow: inset 0 0 0 1px var(--acc);
+  background: var(--neub);
+  color: var(--neu);
+  box-shadow: inset 3px 0 0 var(--t-blue);
+}
+.neu {
+  background: var(--wall);
+  color: var(--mut);
+  box-shadow: inset 3px 0 0 var(--mut);
 }

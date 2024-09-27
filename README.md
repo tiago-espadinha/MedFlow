@@ -6,8 +6,8 @@ A healthcare operations dashboard for managing patients, admissions, doctors, la
 
 |                                                            |                                             |                                                 |
 | ---------------------------------------------------------- | ------------------------------------------- | ----------------------------------------------- |
-| **Dashboard**                                              | **Themes**                                  | **Localization**                                |
-| ![Dashboard](./docs/images/overview.png)                   | ![Themes](./docs/images/overview_light.png) | ![Localization](./docs/images/localization.png) |
+| **Priority Board**                                         | **Themes**                                  | **Localization**                                |
+| ![Priority Board](./docs/images/overview.png)              | ![Themes](./docs/images/overview_light.png) | ![Localization](./docs/images/localization.png) |
 | **Staff**                                                  | **Admissions**                              | **Laboratory**                                  |
 | ![Staff](./docs/images/doctors.png)                        | ![Admissions](./docs/images/admissions.png) | ![Laboratory](./docs/images/laboratory.png)     |
 | **Billing**                                                | **Pharmacy**                                | **Appointments**                                |
@@ -19,7 +19,7 @@ A healthcare operations dashboard for managing patients, admissions, doctors, la
 
 ## Features
 
-- **Overview dashboard:** hospital-wide KPIs, admissions and ward occupancy charts, and a list of items needing attention.
+- **Priority board:** the home screen ranks what needs attention by triage level, from immediate to non-urgent, with a bed census and key figures below.
 - **Resource management:** search, filter, add, edit, view and delete doctors, admissions, laboratory orders, invoices, medications and appointments.
 - **Patient charts:** patient details, vitals with trends and reading history, goals and appointments for each admission.
 - **Role-based access:** six roles, chosen at sign-in, each with its own navigation and permitted routes.
@@ -64,4 +64,4 @@ npm run dev
 
 ## Licence and credits
 
-Released under the [MIT License](LICENSE). The interface uses each platform's system fonts, so no third-party fonts are loaded.
+Released under the [MIT License](LICENSE). The interface uses [Archivo](https://fonts.google.com/specimen/Archivo) by Omnibus-Type, served by Google Fonts under the SIL Open Font License.
